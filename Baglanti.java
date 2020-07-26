@@ -287,6 +287,25 @@ public void calisanSil(int i){
     
     
 }
+public void equSil(int i){
+    
+     try {
+         statement=con.createStatement();
+         String sorgu="DELETE from Equipment where EquipmentID="+i ;
+         
+         statement.executeUpdate(sorgu);
+         
+         
+         
+     } catch (SQLException ex) {
+         Logger.getLogger(Baglanti.class.getName()).log(Level.SEVERE, null, ex);
+     }
+    
+    
+    
+    
+    
+}
  
   public void kundeGuncelle(String nsn,String d,String p,int j,int o,int id){
       String sorgu="UPDATE kunde SET tbKunde.CustomerName=?,InspectionPlace.District=?,InspectionPlace.Province=?,JobOrder.JobOrderNo=?,Offer.OfferNo=?  FROM tbKunde AS kunde INNER JOIN InspectionPlace ON kunde.InspectionPlaceID=InspectionPlace.InspectionPlaceID INNER JOIN JobOrder ON kunde.CustomerID=JobOrder.CustomerID INNER JOIN Offer ON kunde.CustomerID=Offer.CustomerID WHERE CustomerID=?";

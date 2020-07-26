@@ -2,6 +2,8 @@
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
@@ -64,6 +66,28 @@ public class EquipmentInfo extends javax.swing.JFrame {
         return e;
     
       }
+         public void equGuncelle(int i,String a,String l,String sgn,String st,String un,String e) throws ParseException{
+         Baglanti b=new Baglanti(); 
+        String sorgu="Update Equipment SET EquipmentName=?,MPCarrierMedium=?,MagTech=?,UVLightIntensity=?,DistanceOfLight=?,PoleDistance=? WHERE EquipmentID=?";
+     try {
+         b.preparedstatement=b.con.prepareStatement(sorgu);
+         b.preparedstatement.setString(1, a);
+         b.preparedstatement.setString(2, l);
+         b.preparedstatement.setString(3, sgn);
+         b.preparedstatement.setString(4, st);
+         b.preparedstatement.setString(5, un);
+         b.preparedstatement.setString(6,e);
+         b.preparedstatement.setInt(7, i);
+         
+         b.preparedstatement.executeUpdate();
+         
+         
+     } catch (SQLException ex) {
+         Logger.getLogger(Baglanti.class.getName()).log(Level.SEVERE, null, ex);
+     }
+        
+        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -84,6 +108,16 @@ public class EquipmentInfo extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jTextField4 = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jTextField5 = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jTextField6 = new javax.swing.JTextField();
+        add = new javax.swing.JButton();
+        change = new javax.swing.JButton();
+        delete = new javax.swing.JButton();
+        back = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -136,28 +170,83 @@ public class EquipmentInfo extends javax.swing.JFrame {
 
         jTextField1.setToolTipText("");
 
+        jLabel4.setText("UV Light Int. :");
+
+        jLabel5.setText("Distance Of Light:");
+
+        jLabel6.setText("Pole Distance:");
+
+        add.setText("Add");
+        add.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addActionPerformed(evt);
+            }
+        });
+
+        change.setText("Change");
+        change.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changeActionPerformed(evt);
+            }
+        });
+
+        delete.setText("Delete");
+        delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteActionPerformed(evt);
+            }
+        });
+
+        back.setText("Back");
+        back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(list)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 648, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(327, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField1)
-                    .addComponent(jTextField2)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
-                .addGap(349, 349, 349))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextField1)
+                            .addComponent(jTextField2)
+                            .addComponent(jTextField3)
+                            .addComponent(jTextField4)
+                            .addComponent(jTextField5)
+                            .addComponent(jTextField6, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(549, 549, 549)
+                        .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(change)))
+                .addGap(303, 303, 303))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(list)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(delete))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 648, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(back)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,7 +254,9 @@ public class EquipmentInfo extends javax.swing.JFrame {
                 .addGap(29, 29, 29)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
-                .addComponent(list)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(list)
+                    .addComponent(delete))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -178,7 +269,25 @@ public class EquipmentInfo extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(195, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
+                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(49, 49, 49)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(add)
+                    .addComponent(change))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addComponent(back)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -186,14 +295,12 @@ public class EquipmentInfo extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 804, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 2, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -210,6 +317,72 @@ public class EquipmentInfo extends javax.swing.JFrame {
            Logger.getLogger(PersonelInformation.class.getName()).log(Level.SEVERE, null, ex);
        }
     }//GEN-LAST:event_listActionPerformed
+
+    private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
+     Baglanti a=new Baglanti();
+     String sorgu="INSERT INTO Equipment(EquipmentName,MPCarrierMedium,MagTech,UVLightIntensity,DistanceOfLight,PoleDistance) VALUES(?,?,?,?,?,?)";
+      try {
+         preparedstatement=a.con.prepareStatement(sorgu);
+         preparedstatement.setString(1,jTextField1.getText());
+         preparedstatement.setString(2,jTextField2.getText());
+         preparedstatement.setString(3,jTextField3.getText());
+         preparedstatement.setString(4,jTextField4.getText());
+         preparedstatement.setString(5,jTextField5.getText());
+         preparedstatement.setString(6,jTextField6.getText());
+        
+
+         
+         
+         int result=preparedstatement.executeUpdate();
+         
+           
+           
+       } catch (SQLException ex) {
+           Logger.getLogger(PersonelInformation.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }//GEN-LAST:event_addActionPerformed
+
+    private void changeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeActionPerformed
+     Baglanti b=new Baglanti();
+     String n=jTextField1.getText();
+     String mp=jTextField2.getText();
+     String mt=jTextField3.getText();
+     String uvli=jTextField4.getText();
+     String dol=jTextField5.getText();
+     String pd=jTextField6.getText();
+     
+     int selectedrow=jTable1.getSelectedRow();
+     if(selectedrow==-1){
+         if(model.getRowCount()==0){
+             System.out.println("Tablo boş");
+         }
+         else{
+             System.out.println("Çalışan seçiniz");
+         }
+     }
+     else{
+           int a=(Integer)model.getValueAt(selectedrow, 0);
+           try {
+               equGuncelle(a,n,mp,mt,uvli,dol,pd);
+           } catch (ParseException ex) {
+               Logger.getLogger(PersonelInformation.class.getName()).log(Level.SEVERE, null, ex);
+           }
+         
+     }
+    }//GEN-LAST:event_changeActionPerformed
+
+    private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
+        int SelectedRowIndex=jTable1.getSelectedRow();
+        Baglanti a= new Baglanti();
+        int c=Integer.parseInt(model.getValueAt(SelectedRowIndex, 0).toString());
+        a.equSil(c);
+    }//GEN-LAST:event_deleteActionPerformed
+
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+     Anasayfa a=new Anasayfa();
+     a.setVisible(true);
+     this.setVisible(false);
+    }//GEN-LAST:event_backActionPerformed
 
     /**
      * @param args the command line arguments
@@ -247,15 +420,25 @@ public class EquipmentInfo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton add;
+    private javax.swing.JButton back;
+    private javax.swing.JButton change;
+    private javax.swing.JButton delete;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
     private javax.swing.JButton list;
     // End of variables declaration//GEN-END:variables
 }

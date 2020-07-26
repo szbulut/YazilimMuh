@@ -62,6 +62,11 @@ public class Anasayfa extends javax.swing.JFrame {
 
         equBtn.setText("Equipment Info");
         equBtn.setPreferredSize(new java.awt.Dimension(157, 25));
+        equBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                equBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -121,6 +126,12 @@ public class Anasayfa extends javax.swing.JFrame {
     r.setVisible(true);
     this.setVisible(false);
     }//GEN-LAST:event_rprtBtnActionPerformed
+
+    private void equBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_equBtnActionPerformed
+     EquipmentInfo e=new EquipmentInfo();
+     e.setVisible(true);
+     this.setVisible(false);
+    }//GEN-LAST:event_equBtnActionPerformed
 
     /**
      * @param args the command line arguments
