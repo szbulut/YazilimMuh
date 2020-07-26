@@ -42,6 +42,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class Bericht extends javax.swing.JFrame {
     public int EquID;
     private String EquName;
+    public int proid;
     
     public Bericht() {
         initComponents();
@@ -120,7 +121,7 @@ public class Bericht extends javax.swing.JFrame {
   }
         public void projeCombo(int i){
         Baglanti a=new Baglanti();
-        String sorgu="SELECT ProjectName FROM Project WHERE CustomerID=?";
+        String sorgu="SELECT ProjectName,ProjectID FROM Project WHERE CustomerID=?";
         try{
           
           a.preparedstatement=a.con.prepareStatement(sorgu);
@@ -130,6 +131,7 @@ public class Bericht extends javax.swing.JFrame {
           
           while(rs.next()){
               String name=rs.getString("ProjectName");
+              proid=rs.getInt("ProjectID");
               projeslctComboBox.addItem(name);     
           }
           
@@ -637,6 +639,7 @@ public class Bericht extends javax.swing.JFrame {
         savereportBtn = new javax.swing.JButton();
         exportreportBtn = new javax.swing.JButton();
         exportExcel = new javax.swing.JButton();
+        Back = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(2000, 1301));
@@ -794,6 +797,12 @@ public class Bericht extends javax.swing.JFrame {
         );
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
+
+        projeslctComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                projeslctComboBoxActionPerformed(evt);
+            }
+        });
 
         slctProjectBtn.setText("Select");
 
@@ -2686,6 +2695,11 @@ public class Bericht extends javax.swing.JFrame {
         jLabel112.setText("Müşteri");
 
         savereportBtn.setText("Save");
+        savereportBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                savereportBtnActionPerformed(evt);
+            }
+        });
 
         exportreportBtn.setText("Export PDF");
         exportreportBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -2698,6 +2712,13 @@ public class Bericht extends javax.swing.JFrame {
         exportExcel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 exportExcelActionPerformed(evt);
+            }
+        });
+
+        Back.setText("Back");
+        Back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackActionPerformed(evt);
             }
         });
 
@@ -2879,7 +2900,10 @@ public class Bericht extends javax.swing.JFrame {
                                             .addComponent(jPanel29, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(savereportBtn)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(Back)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(savereportBtn))
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -3463,7 +3487,8 @@ public class Bericht extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(savereportBtn)
                     .addComponent(exportreportBtn)
-                    .addComponent(exportExcel))
+                    .addComponent(exportExcel)
+                    .addComponent(Back))
                 .addGap(117, 117, 117))
         );
 
@@ -3821,6 +3846,42 @@ public class Bericht extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField41ActionPerformed
 
+    private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
+     Anasayfa a=new Anasayfa();
+     a.setVisible(true);
+     this.setVisible(false);
+    }//GEN-LAST:event_BackActionPerformed
+
+    private void savereportBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savereportBtnActionPerformed
+       Baglanti a=new Baglanti();
+     String sorgu="INSERT INTO Bericht(ReportNo,ReportDate,Page,ProjektID) VALUES(?,?,?,?)";
+      try {
+         a.preparedstatement=a.con.prepareStatement(sorgu);
+         a.preparedstatement.setInt(1,Integer.parseInt(RaporNoTxt.getText()));
+         SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+         String date=sdf.format("yyyy-MM-dd");
+         a.preparedstatement.setString(2,DateTxt.getText());
+         a.preparedstatement.setInt(3,Integer.parseInt(jTextField3.getText()));
+         a.preparedstatement.setString(4,jTextField4.getText());
+         a.preparedstatement.setString(5,jTextField5.getText());
+         a.preparedstatement.setString(6,jTextField6.getText());
+        
+
+         
+         
+         int result=a.preparedstatement.executeUpdate();
+         
+           
+           
+       } catch (SQLException ex) {
+           Logger.getLogger(PersonelInformation.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }//GEN-LAST:event_savereportBtnActionPerformed
+
+    private void projeslctComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projeslctComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_projeslctComboBoxActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -3835,6 +3896,7 @@ public class Bericht extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Back;
     private javax.swing.JButton ChangePlaceBtn;
     private javax.swing.JTextField DateTxt;
     private javax.swing.JTextField EquTxt;

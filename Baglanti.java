@@ -181,6 +181,9 @@ public void calisanEkle(){
     
     
 }
+public void raporEkle(){
+    
+}
   public ArrayList<Personel> getPersonel() throws SQLException{
          Baglanti a=new Baglanti();
          String sorgu="SELECT*FROM tbPersonal";

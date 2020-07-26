@@ -144,6 +144,11 @@ public class EquipmentInfo extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(0).setResizable(false);
@@ -383,6 +388,17 @@ public class EquipmentInfo extends javax.swing.JFrame {
      a.setVisible(true);
      this.setVisible(false);
     }//GEN-LAST:event_backActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+      int selectedrow=jTable1.getSelectedRow();
+       jTextField1.setText(model.getValueAt(selectedrow, 1).toString());
+       jTextField2.setText(model.getValueAt(selectedrow, 2).toString());
+       jTextField3.setText(model.getValueAt(selectedrow, 3).toString());
+       jTextField4.setText(model.getValueAt(selectedrow, 4).toString());
+       jTextField5.setText(model.getValueAt(selectedrow, 5).toString());
+       jTextField6.setText(model.getValueAt(selectedrow, 6).toString());
+
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments
