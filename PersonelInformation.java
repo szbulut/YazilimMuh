@@ -426,7 +426,7 @@ public class PersonelInformation extends javax.swing.JFrame {
     private void dltBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dltBtnActionPerformed
         int SelectedRowIndex=personeltable.getSelectedRow();
         Baglanti a= new Baglanti();
-        int c=Integer.parseInt(model.getValueAt(SelectedRowIndex, 3).toString());
+        int c=Integer.parseInt(model.getValueAt(SelectedRowIndex, 0).toString());
         a.calisanSil(c);
     }//GEN-LAST:event_dltBtnActionPerformed
 

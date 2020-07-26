@@ -3847,7 +3847,7 @@ public class Bericht extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField41ActionPerformed
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
-     Anasayfa a=new Anasayfa();
+     Ilkkullanicigirisi a=new Ilkkullanicigirisi();
      a.setVisible(true);
      this.setVisible(false);
     }//GEN-LAST:event_BackActionPerformed
